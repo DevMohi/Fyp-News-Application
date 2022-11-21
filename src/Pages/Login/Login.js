@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
+    <div className="flex justify-center mt-20">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-bold">ReadSmart Login</h2>
@@ -118,17 +118,19 @@ const Login = () => {
 
             {signInError}
             <input
-              className="btn w-full max-w-xs text-white"
+              className="btn w-full max-w-xs text-white btn-primary"
               type="submit"
               value="Login"
             />
           </form>
           <p>
-            <small>
-              New to ReadSmart
-              <Link className="text-primary" to="/signup">
-                Create New Account
-              </Link>
+            <small className="font-bold">
+              New to ReadSmart?
+              <span className="ml-1">
+                <Link className="text-primary" to="/signup">
+                  Create New Account
+                </Link>
+              </span>
             </small>
           </p>
           <div className="divider">OR</div>

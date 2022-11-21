@@ -44,7 +44,6 @@ const Home = () => {
 
   return (
     <div>
-      <h1>ReadSmart</h1>
       <NewsCards
         articles={newsArticles}
         activeArticle={activeArticle}

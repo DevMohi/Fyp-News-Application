@@ -13,10 +13,7 @@ const AddPost = () => {
     reset,
   } = useForm();
 
-  const {
-    isLoading,
-    data: review,
-  } = useQuery({
+  const { isLoading, data: review } = useQuery({
     queryKey: ["review"],
     queryFn: () =>
       fetch("http://localhost:5000/review", {
@@ -263,7 +260,7 @@ const AddPost = () => {
           <input
             type="submit"
             value="Add"
-            className="btn btn-secondary font-bold text-white w-full max-w-xs"
+            className="btn btn-primary font-bold text-white w-full max-w-xs"
           />
         </form>
       </div>

@@ -56,7 +56,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
+    <div className="flex justify-center mt-20">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-bold">Sign Up</h2>
@@ -152,17 +152,19 @@ const SignUp = () => {
 
             {signInError}
             <input
-              className="btn w-full max-w-xs text-white"
+              className="btn w-full max-w-xs text-white btn-primary"
               type="submit"
               value="Sign Up"
             />
           </form>
           <p>
-            <small>
-              Already have an account?{" "}
-              <Link className="text-primary" to="/login">
-                Please login
-              </Link>
+            <small className="font-bold">
+              Already have an account?
+              <span className="ml-1">
+                <Link className="text-primary" to="/login">
+                  Please login
+                </Link>
+              </span>
             </small>
           </p>
           <div className="divider">OR</div>
