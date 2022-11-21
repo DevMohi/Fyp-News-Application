@@ -9,6 +9,7 @@ import Reviews from "./Pages/ReviewSection/Reviews";
 import Navbar from "./Shared/Navbar";
 import "react-toastify/dist/ReactToastify.css";
 import AddPost from "./Pages/Post/AddPost";
+import Faq from "./Pages/Faq/Faq";
 
 function App() {
   return (
@@ -23,10 +24,25 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path="review" element={<Reviews></Reviews>}></Route>
-        <Route path="addReview" element={<AddReview></AddReview>}></Route>
+        <Route
+          path="review"
+          element={
+            <RequireAuth>
+              <Reviews></Reviews>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="addReview"
+          element={
+            <RequireAuth>
+              <AddReview></AddReview>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="addPost" element={<AddPost></AddPost>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
+        <Route path="faq" element={<Faq></Faq>}></Route>
         <Route path="signup" element={<SignUp></SignUp>}></Route>
       </Routes>
       <ToastContainer />

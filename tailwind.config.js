@@ -8,7 +8,7 @@ module.exports = {
     themes: [
       {
         alanTheme: {
-          primary: "#0FCFEC",
+          primary: "#3B185F",
           secondary: "#19D3AE",
           accent: "#3A4256",
           neutral: "#3d4451",

@@ -16,7 +16,6 @@ const AddPost = () => {
   const {
     isLoading,
     data: review,
-    refetch,
   } = useQuery({
     queryKey: ["review"],
     queryFn: () =>

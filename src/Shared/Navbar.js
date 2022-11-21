@@ -1,9 +1,10 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+
 import auth from "../firebase.init";
 import useAdmin from "../hooks/useAdmin";
+import CustomLink from "./CustomLink";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -15,26 +16,29 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link to="/">Home</Link>{" "}
+        <CustomLink to="/">Home</CustomLink>
       </li>
       {/* Review Only For Users  */}
       {!admin && (
         <>
           <li>
-            <Link to="/review">Review</Link>
+            <CustomLink to="/review">Review</CustomLink>
           </li>
           <li>
-            <Link to="/addReview">Add Review</Link>
+            <CustomLink to="/addReview">Add Review</CustomLink>
           </li>
         </>
       )}
       {/* Admins can Only add post  */}
 
       <li>
-        <Link to="/contact">Contact Us</Link>
+        <CustomLink to="/contact">Contact Us</CustomLink>
       </li>
 
-      <li>{admin && <Link to="/addPost">Add Post</Link>}</li>
+      <li>{admin && <CustomLink to="/addPost">Add Post</CustomLink>}</li>
+      <li>
+        <CustomLink to="/faq">FAQ</CustomLink>
+      </li>
 
       <li>
         {user ? (
@@ -42,7 +46,7 @@ const Navbar = () => {
             Sign Out
           </li>
         ) : (
-          <Link to="/login">Login</Link>
+          <CustomLink to="/login">Login</CustomLink>
         )}
       </li>
     </>
