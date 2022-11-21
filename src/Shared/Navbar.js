@@ -34,7 +34,7 @@ const Navbar = () => {
         <Link to="/contact">Contact Us</Link>
       </li>
 
-      <li>{admin && <Link to="/addpost">Add Post</Link>}</li>
+      <li>{admin && <Link to="/addPost">Add Post</Link>}</li>
 
       <li>
         {user ? (

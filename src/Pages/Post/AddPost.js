@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 import Loading from "../../Shared/Loading";
 
-const AddReview = () => {
+const AddPost = () => {
   const {
     register,
     formState: { errors },
@@ -46,24 +46,29 @@ const AddReview = () => {
       .then((result) => {
         if (result.success) {
           const img = result.data.url;
-          const review = {
-            name: data?.name,
-            desc: data?.desc,
-            rating: data?.rating,
-            img: img,
+          const articles = {
+            author: data?.author,
+            title: data?.title,
+            description: data?.description,
+            url: data?.url,
+            urlToImage: img,
+            content: data?.content,
+            publishedAt: data?.publishedAt,
           };
           //send to your database posting it
-          fetch("http://localhost:5000/review", {
+          fetch("http://localhost:5000/addpost", {
             method: "POST",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify(review),
+            body: JSON.stringify(articles),
           })
             .then((res) => res.json())
             .then((inserted) => {
               if (inserted.insertedId) {
-                toast.success("Review Added Succesfully");
+                toast.success(
+                  "Post Has Been Added To The Database, The Backedn Engineer Will Soon Add It to Website"
+                );
                 reset();
               } else {
                 toast.error("Failed To Add Review");
@@ -78,57 +83,55 @@ const AddReview = () => {
   }
 
   return (
-    <div className="">
-      <h2 className="text-2xl text-center mt-5 font-bold">Add Review</h2>
+    <div className="mb-5">
+      <h2 className="text-2xl text-center mt-5 font-bold">Add Post</h2>
       <div className="flex justify-center mt-5">
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Name  */}
+          {/* Author  */}
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text">Author</span>
             </label>
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder="Author"
               className="input input-bordered w-full max-w-xs"
-              {...register("name", {
+              {...register("author", {
                 required: {
                   value: true,
-                  message: " Name is required",
+                  message: " Author is required",
                 },
               })}
             />
             <label className="label">
-              {errors.name?.type === "required" && (
+              {errors.author?.type === "required" && (
                 <span className="label-text-alt text-red-500">
-                  {errors.name.message}
+                  {errors.author.message}
                 </span>
               )}
             </label>
           </div>
 
-          {/* Rating  */}
+          {/* Title  */}
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Rating</span>
+              <span className="label-text">Title</span>
             </label>
             <input
-              type="number"
-              placeholder="Please Input a number within 5"
-              min="1"
-              max="5"
+              type="text"
+              placeholder="Title"
               className="input input-bordered w-full max-w-xs"
-              {...register("rating", {
+              {...register("title", {
                 required: {
                   value: true,
-                  message: "Rating is required",
+                  message: "Title is required",
                 },
               })}
             />
             <label className="label">
-              {errors.rating?.type === "required" && (
+              {errors.title?.type === "required" && (
                 <span className="label-text-alt text-red-500">
-                  {errors.rating.message}
+                  {errors.title.message}
                 </span>
               )}
             </label>
@@ -143,7 +146,7 @@ const AddReview = () => {
               type="text"
               placeholder="Description"
               className="input input-bordered w-full max-w-xs"
-              {...register("desc", {
+              {...register("description", {
                 required: {
                   value: true,
                   message: " Description is required",
@@ -151,9 +154,34 @@ const AddReview = () => {
               })}
             />
             <label className="label">
-              {errors.desc?.type === "required" && (
+              {errors.description?.type === "required" && (
                 <span className="label-text-alt text-red-500">
-                  {errors.desc.message}
+                  {errors.description.message}
+                </span>
+              )}
+            </label>
+          </div>
+
+          {/* Url  */}
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Url</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Url"
+              className="input input-bordered w-full max-w-xs"
+              {...register("url", {
+                required: {
+                  value: true,
+                  message: " URL is required",
+                },
+              })}
+            />
+            <label className="label">
+              {errors.url?.type === "required" && (
+                <span className="label-text-alt text-red-500">
+                  {errors.url.message}
                 </span>
               )}
             </label>
@@ -183,6 +211,56 @@ const AddReview = () => {
             </label>
           </div>
 
+          {/* Content  */}
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Content</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Content"
+              className="input input-bordered w-full max-w-xs"
+              {...register("content", {
+                required: {
+                  value: true,
+                  message: " Content is required",
+                },
+              })}
+            />
+            <label className="label">
+              {errors.content?.type === "required" && (
+                <span className="label-text-alt text-red-500">
+                  {errors.content.message}
+                </span>
+              )}
+            </label>
+          </div>
+
+          {/* Published At  */}
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Published At</span>
+            </label>
+            <input
+              type="date"
+              placeholder="Content"
+              className="input input-bordered w-full max-w-xs"
+              {...register("publishedAt", {
+                required: {
+                  value: true,
+                  message: " Date is required",
+                },
+              })}
+            />
+            <label className="label">
+              {errors.publishedAt?.type === "required" && (
+                <span className="label-text-alt text-red-500">
+                  {errors.publishedAt.message}
+                </span>
+              )}
+            </label>
+          </div>
+
           <input
             type="submit"
             value="Add"
@@ -194,4 +272,4 @@ const AddReview = () => {
   );
 };
 
-export default AddReview;
+export default AddPost;
