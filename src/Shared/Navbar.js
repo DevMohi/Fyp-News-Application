@@ -3,9 +3,11 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../firebase.init";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const logout = () => {
     signOut(auth);
   };
@@ -16,19 +18,24 @@ const Navbar = () => {
         <Link to="/">Home</Link>{" "}
       </li>
       {/* Review Only For Users  */}
-      <li>
-        <Link to="/review">Review</Link>
-      </li>
-      <li>
-        <Link to="/addReview">Add Review</Link>
-      </li>
+      {!admin && (
+        <>
+          <li>
+            <Link to="/review">Review</Link>
+          </li>
+          <li>
+            <Link to="/addReview">Add Review</Link>
+          </li>
+        </>
+      )}
       {/* Admins can Only add post  */}
-      <li>
-        <Link to="/addpost">Add Post</Link>
-      </li>
+
       <li>
         <Link to="/contact">Contact Us</Link>
       </li>
+
+      <li>{admin && <Link to="/addpost">Add Post</Link>}</li>
+
       <li>
         {user ? (
           <li onClick={logout} className="btn btn-ghost text-xs">
