@@ -10,6 +10,7 @@ import Navbar from "./Shared/Navbar";
 import "react-toastify/dist/ReactToastify.css";
 import AddPost from "./Pages/Post/AddPost";
 import Faq from "./Pages/Faq/Faq";
+import Contact from "./Pages/Contact/Contact";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="addPost" element={<AddPost></AddPost>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="faq" element={<Faq></Faq>}></Route>
+        <Route path="contact" element={<Contact></Contact>}></Route>
         <Route path="signup" element={<SignUp></SignUp>}></Route>
       </Routes>
       <ToastContainer />
